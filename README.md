@@ -16,3 +16,4 @@ Passos:
     4 - Abrir um terminal na pasta do projeto e rodar o programa
         python trabGrauB/main.py
 
+Link video: https://asavbrm-my.sharepoint.com/:v:/g/personal/pedroengel_edu_unisinos_br/EfPYWccDk4VCi9vgDk1MS_cB26lBV_h8kPEkUL6uYsBJ8w?referrer=Teams.TEAMS-ELECTRON&referrerScenario=MeetingChicletGetLink.view 

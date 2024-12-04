@@ -32,6 +32,18 @@ def apply_filter(image, filter_type):
         ),
         "invert": lambda img: cv2.bitwise_not(img),
         "blur": lambda img: cv2.GaussianBlur(img, (15, 15), 0),
+        "threshold": lambda img: cv2.threshold(
+            cv2.cvtColor(img, cv2.COLOR_BGR2GRAY), 127, 255, cv2.THRESH_BINARY
+        )[1],
+        "cartoon": lambda img: cv2.bitwise_and(cv2.medianBlur(img, 7), img),
+        "edges": lambda img: cv2.Canny(cv2.cvtColor(img, cv2.COLOR_BGR2GRAY), 100, 200),
+        "saturate": lambda img: cv2.convertScaleAbs(img, alpha=1.2, beta=0),
+        "pixelate": lambda img: cv2.resize(
+            cv2.resize(img, (20, 20)), (img.shape[1], img.shape[0])
+        ),
+        "sharpen": lambda img: cv2.filter2D(
+            img, -1, np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
+        ),
     }
     if filter_type in filters:
         return filters[filter_type](image)
@@ -120,7 +132,9 @@ def main():
         if key == ord("s"):
             save_image(image)
         elif key == ord("f"):
-            print("Filtros disponíveis: grayscale, sepia, invert, blur")
+            print(
+                "Filtros disponíveis: grayscale, sepia, invert, blur, threshold, cartoon, edges, saturate, pixelate, sharpen"
+            )
             filter_type = input("Escolha um filtro: ").strip().lower()
             temp_image = apply_filter(image, filter_type)
             if temp_image is not None:
